@@ -32,7 +32,7 @@ ROOM 0
 0,0,0,0,0,0,0,0,0,a,0,0,0,0,a,0
 0,0,0,0,0,0,0,0,0,a,0,0,0,0,a,0
 NAME Hallway
-EXT 14,12 1 1,12
+EXT 14,12 1 1,12 DLG 3
 PAL 0
 TUNE 2
 
@@ -54,10 +54,10 @@ a,a,0,0,0,a,a,0,a,0,0,0,0,0,0,0
 0,a,0,0,0,0,0,0,a,0,0,0,0,0,0,0
 0,a,a,0,0,0,a,a,a,0,0,0,0,0,0,0
 NAME Waiting Room
-EXT 1,12 0 14,12
-EXT 4,15 2 8,0
-EXT 3,15 2 7,0
-EXT 5,15 2 9,0
+EXT 1,12 0 14,12 DLG 3
+EXT 4,15 2 8,0 DLG 5
+EXT 3,15 2 7,0 DLG 5
+EXT 5,15 2 9,0 DLG 5
 PAL 0
 TUNE 2
 
@@ -69,11 +69,11 @@ ROOM 2
 0,0,0,a,0,0,0,0,0,0,0,0,0,a,0,0
 0,0,a,0,0,0,0,0,0,0,0,0,0,0,a,0
 0,0,a,0,0,0,0,0,0,0,0,0,0,0,a,0
-0,0,a,0,0,0,0,0,0,0,0,0,0,0,a,0
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,0,a
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,0,a
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,0,a
-0,a,0,0,0,0,0,0,0,0,0,0,0,0,0,a
+0,0,a,0,0,a,a,0,0,a,a,0,0,0,a,0
+0,a,0,0,0,a,0,0,0,0,a,0,0,0,0,a
+0,a,0,0,0,a,0,a,a,0,a,0,0,0,0,a
+0,a,0,0,0,a,0,0,0,0,a,0,0,0,0,a
+0,a,0,0,0,a,a,0,0,a,a,0,0,0,0,a
 0,a,0,0,0,0,0,0,0,0,0,0,0,0,0,a
 0,0,a,0,0,0,0,0,0,0,0,0,0,0,a,0
 0,0,a,0,0,0,0,0,0,0,0,0,0,0,a,0
@@ -82,7 +82,7 @@ NAME Top of Oval Office
 EXT 8,0 1 4,15
 EXT 7,0 1 3,15
 EXT 9,0 1 5,15
-EXT 4,15 3 4,0
+EXT 4,15 3 4,0 DLG 6
 EXT 5,15 3 5,0
 EXT 6,15 3 6,0
 EXT 7,15 3 7,0
@@ -111,6 +111,7 @@ ROOM 3
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 NAME Bottom of Oval Office
+ITM 0 8,2
 EXT 4,0 2 4,15
 EXT 5,0 2 5,15
 EXT 6,0 2 6,15
@@ -147,17 +148,16 @@ POS 0 11,3
 
 SPR a
 00000000
-00000000
-01010001
-01110001
-01110010
-01111100
+00011000
+00011000
+00111100
+01111110
+01111110
 00111100
 00100100
 NAME Receptionist
 DLG 0
-POS 1 6,12
-BLIP 1
+POS 3 8,3
 
 SPR b
 00011000
@@ -169,18 +169,19 @@ SPR b
 00100100
 00100100
 NAME Bartlett
-POS 0 12,6
+DLG 4
+POS 1 5,14
 
 ITM 0
-00000000
-00000000
-00000000
-00111100
-01100100
-00100100
-00011000
-00000000
-NAME tea
+00000001
+00000011
+00000111
+00001110
+00011100
+00111000
+01000000
+10000000
+NAME Knife
 DLG 1
 
 ITM 1
@@ -197,16 +198,32 @@ DLG 2
 BLIP 2
 
 DLG 0
-I'm a cat
+Get going into the Oval Office now.
 NAME cat dialog
 
 DLG 1
-You found a nice warm cup of tea
-NAME tea dialog
+{drws "A"}"To who?"{pg}{drws "Bartlett"}"Whom."{pg}{drws "A"}"To whom?"{pg}{drws "Bartlett"}"Funny you should ask.{pg}Charlie, my father gave this to me and his father gave it to him.  And now I'm giving it to you.{pg}{pg}{pg}Take a look.{pg}{pg}The fully tapered bolster allows for sharpening the entire edge of the blade."{pg}{drws "A"}"It says PR, I thought I knew them all, but I don't recognize the manufacturer."{pg}{drws "Bartlett"}"Yeah, these were made for my family by a Boston silversmith, named Paul Revere.{pg}I'm proud of you Charlie."{pg}{drws "A"}"Thank you sir."{end}
+NAME Knife Dialog
 
 DLG 2
 A key! {wvy}What does it open?{wvy}
 NAME key dialog
+
+DLG 3
+{drws "A"}"Mr. President"{pg}{drws "Bartlett"}"Whatcha got Charles?"{pg}{drws "A"}"A winner, Mr. President. The 1985 Komenyomata. Made in Japan from the best materials available.
+NAME exit narration 1
+
+DLG 4
+Good work Charles.
+NAME Bartlett dialog
+
+DLG 5
+{drws "Bartlett"}"Lighter weight blade."{pg}{drws "A"}"Which facilitates cutting and user fatigue."{pg}{drws "Bartlett"}"I once test drove the Komenyomata."{pg}{drws "A"}"And?"{pg}{drws "Bartlett"}"Not wild about it.  How about this?"
+NAME exit narration 2
+
+DLG 6
+{drws "A"}"Okay, Mr. President, I say this with all possible respect but each of these knives you know, cuts meat.  Why is it important -" {drws "Bartlett"}"Because it's something we pass on, something with a history, so we can say my father gave this to me and his father gave it to him, and now I'm giving it to you."{pg}{drws "A"}"Well okay, sir, but if that's true then why don't you already have one?"{pg}{drws "Bartlett"}"I do have one."{pg}{drws "A"}"Why do you need a new one?"{pg}{drws "Bartlett"}"Because I'm giving mine away."
+NAME exit narration 3
 
 VAR a
 42

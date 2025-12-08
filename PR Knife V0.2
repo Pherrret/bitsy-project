@@ -15,24 +15,26 @@ PAL 0
 NAME blueprint
 
 ROOM 0
-0,0,0,0,0,0,0,0,0,a,0,0,0,0,a,0
-0,0,0,0,0,0,0,0,0,a,0,0,0,0,a,0
+0,0,0,0,a,0,0,0,0,a,0,0,0,0,a,0
+0,0,0,0,a,a,a,a,a,a,0,0,0,0,a,0
 0,a,a,a,a,a,a,a,a,a,0,0,0,0,a,0
-0,a,0,0,0,0,0,0,0,a,0,0,0,0,a,0
+0,a,0,0,0,0,0,0,0,a,0,0,0,a,a,0
+0,a,0,0,a,a,a,0,0,a,0,0,a,a,a,0
 0,a,0,0,a,a,a,0,0,a,0,0,0,0,a,0
 0,a,0,0,a,a,a,0,0,a,0,0,0,0,a,0
 0,a,0,0,a,a,a,0,0,a,0,0,0,0,a,0
 0,a,0,0,a,a,a,0,0,a,0,0,0,0,a,0
-0,a,0,0,a,a,a,0,0,a,0,0,0,0,a,0
-0,a,0,0,a,a,a,0,0,a,0,0,0,0,a,0
-0,a,0,0,a,a,a,0,0,a,0,0,0,0,a,0
-0,a,0,0,a,a,a,0,0,a,0,0,0,0,a,a
+0,a,0,0,a,a,a,0,0,a,a,a,0,0,a,0
+0,a,0,0,a,a,a,0,0,a,0,a,0,0,a,0
+0,a,0,0,a,a,a,0,0,a,0,a,0,0,a,a
 0,a,0,0,0,0,0,0,0,a,0,0,0,0,0,0
 0,a,a,a,a,a,a,a,a,a,0,0,0,0,a,a
 0,0,0,0,0,0,0,0,0,a,0,0,0,0,a,0
 0,0,0,0,0,0,0,0,0,a,0,0,0,0,a,0
 NAME Hallway
-EXT 15,12 1 0,12
+ITM 0 11,5
+ITM 0 12,5
+EXT 15,12 1 0,12 DLG 3
 PAL 0
 TUNE 2
 
@@ -54,7 +56,7 @@ a,a,0,0,0,a,a,0,a,0,0,0,0,0,0,0
 0,a,0,0,0,0,0,0,a,0,0,0,0,0,0,0
 0,a,a,0,0,0,a,a,a,0,0,0,0,0,0,0
 NAME Waiting Room
-EXT 0,12 0 15,12 DLG 3
+EXT 0,12 0 15,12
 EXT 4,15 2 8,0 DLG 5
 EXT 3,15 2 7,0 DLG 5
 EXT 5,15 2 9,0 DLG 5
@@ -211,12 +213,12 @@ NAME key dialog
 
 DLG 3
 """
-{drws "A"}"Mr. President"{pg}{drws "Bartlett"}"Whatcha got Charles?"{pg}{drws "A"}"A winner, Mr. President. The 1985 Komenyomata. Made in Japan from the best materials available.{winner = true}{
-  - {item "0"} == 1 ?
-    ...
+{
+  - winner == true ?
+    {drws "Bartlett"}"Come back in Charles."
   - else ?
-    ...
-}
+    {drws "A"}"Mr. President"{pg}{drws "Bartlett"}"Whatcha got Charles?"{pg}{drws "A"}"A winner, Mr. President. The 1985 Komenyomata. Made in Japan from the best materials available.
+}{winner = true}
 """
 NAME exit narration 1
 
@@ -225,17 +227,37 @@ Good work Charles.
 NAME Bartlett dialog
 
 DLG 5
-{drws "Bartlett"}"Lighter weight blade."{pg}{drws "A"}"Which facilitates cutting and user fatigue."{pg}{drws "Bartlett"}"I once test drove the Komenyomata."{pg}{drws "A"}"And?"{pg}{drws "Bartlett"}"Not wild about it.  How about this?"
+"""
+{
+  - drive == false ?
+    {drws "Bartlett"}"Lighter weight blade."{pg}{drws "A"}"Which facilitates cutting and user fatigue."{pg}{drws "Bartlett"}"I once test drove the Komenyomata."{pg}{drws "A"}"And?"{pg}{drws "Bartlett"}"Not wild about it.  How about this?"
+  - else ?
+    {drws "Bartlett"}"Charlie?"
+}{drive = true}
+"""
 NAME exit narration 2
 
 DLG 6
-{drws "A"}"Okay, Mr. President, I say this with all possible respect but each of these knives you know, cuts meat.  Why is it important -" {drws "Bartlett"}"Because it's something we pass on, something with a history, so we can say my father gave this to me and his father gave it to him, and now I'm giving it to you."{pg}{drws "A"}"Well okay, sir, but if that's true then why don't you already have one?"{pg}{drws "Bartlett"}"I do have one."{pg}{drws "A"}"Why do you need a new one?"{pg}{drws "Bartlett"}"Because I'm giving mine away."
+"""
+{
+  - gave == false ?
+    {drws "A"}"Okay, Mr. President, I say this with all possible respect but each of these knives you know, cuts meat.  Why is it important -" {drws "Bartlett"}"Because it's something we pass on, something with a history, so we can say my father gave this to me and his father gave it to him, and now I'm giving it to you."{pg}{drws "A"}"Well okay, sir, but if that's true then why don't you already have one?"{pg}{drws "Bartlett"}"I do have one."{pg}{drws "A"}"Why do you need a new one?"{pg}{drws "Bartlett"}"Because I'm giving mine away."
+  - else ?
+
+}{gave = true}
+"""
 NAME exit narration 3
 
 VAR a
 42
 
 VAR winner
+false
+
+VAR drive
+false
+
+VAR gave
 false
 
 TUNE 1
